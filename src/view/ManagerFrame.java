@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
+import java.util.Timer;
 
 public class ManagerFrame extends JFrame {
     // Color scheme - Modern Blue Theme
@@ -330,7 +331,7 @@ public class ManagerFrame extends JFrame {
     private JPanel createModernStatsPanel() {
         JPanel statsPanel = new JPanel(new GridLayout(2, 2, 20, 20));
         statsPanel.setBackground(BACKGROUND_LIGHT);
-        statsPanel.setBorder(new EmptyBorder(0, 0, 30, 0));
+        statsPanel.setBorder(new EmptyBorder(30, 0, 0, 0));
         
         // Revenue Card
         JPanel revenueCard = createModernStatsCard("Total Revenue", "Rp 0", 
@@ -804,6 +805,10 @@ public class ManagerFrame extends JFrame {
         worker.execute();
     }
     
+    /**
+     * @param message
+     * @param color
+     */
     private void showModernNotification(String message, Color color) {
         JDialog notification = new JDialog(this);
         notification.setUndecorated(true);
@@ -1438,7 +1443,7 @@ public class ManagerFrame extends JFrame {
         }
         
         JDialog detailsDialog = new JDialog(this, "Order Details", true);
-        detailsDialog.setSize(700, 500);
+        detailsDialog.setSize(700, 900);
         detailsDialog.setLocationRelativeTo(this);
         
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -1628,9 +1633,9 @@ public class ManagerFrame extends JFrame {
             summaryPanel.setBackground(BACKGROUND_LIGHT);
             summaryPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
             
-            JPanel totalCard = createSummaryCard("Total Cancellations", String.valueOf(totalCancellations), ERROR_RED);
-            JPanel revenueCard = createSummaryCard("Lost Revenue", currencyFormat.format(totalLostRevenue), WARNING_ORANGE);
-            JPanel avgCard = createSummaryCard("Avg Loss/Cancel", 
+            JPanel totalCard = createSummaryCard("Total Pembatalan", String.valueOf(totalCancellations), ERROR_RED);
+            JPanel revenueCard = createSummaryCard("Total Kerugian", currencyFormat.format(totalLostRevenue), WARNING_ORANGE);
+            JPanel avgCard = createSummaryCard("Rata-Rata Kerugian", 
                 currencyFormat.format(totalLostRevenue / totalCancellations), PRIMARY_BLUE);
             
             summaryPanel.add(totalCard);
